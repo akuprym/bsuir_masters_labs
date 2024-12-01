@@ -24,7 +24,6 @@ for k = 1:N
     z(k, :) = H * x(k, :)' + mvnrnd([0; 0], R)';
 end
 
-% Фильтрация Калмана
 x_est = zeros(N, 2);
 P = eye(2);
 
@@ -32,7 +31,6 @@ for k = 2:N
     x_pred = A * x_est(k-1, :)';
     P_pred = A * P * A' + Q;
     
-    % Обновление
     K = P_pred * H' / (H * P_pred * H' + R); % К-т Калмана
     x_est(k, :) = (x_pred + K * (z(k, :)' - H * x_pred))';
     P = (eye(2) - K * H) * P_pred;
