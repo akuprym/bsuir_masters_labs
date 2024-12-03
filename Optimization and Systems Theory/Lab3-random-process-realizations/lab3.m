@@ -40,7 +40,6 @@ for i = 1:3
         continue;
     end
     
-    % Генерация реализации процесса
     z = randn(length(time), 1);
     realizations(i, :) = (L * z)';
     
